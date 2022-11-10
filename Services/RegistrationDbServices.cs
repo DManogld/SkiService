@@ -32,6 +32,7 @@ namespace SkiService.Services
                     FacilityName = e.Facility.FacilityName,
                     PriorityName = e.Priority.PriorityName,
                     StatusName = e.Status.StatusName,
+                    Kommentar = e.Kommentar
                 }));
 
                 return result;
@@ -63,6 +64,7 @@ namespace SkiService.Services
                     FacilityName = c.Facility.FacilityName,
                     PriorityName = c.Priority.PriorityName,
                     StatusName = c.Status.StatusName,
+                    Kommentar = c.Kommentar
                 };
             }
             catch (Exception ex)
@@ -85,6 +87,7 @@ namespace SkiService.Services
                     Priority = _dbcontext.Priorities.FirstOrDefault(e => e.PriorityName == registration.PriorityName),
                     Facility = _dbcontext.Facilities.FirstOrDefault(e => e.FacilityName == registration.FacilityName),
                     Status = _dbcontext.Status.FirstOrDefault(e => e.StatusName == registration.StatusName),
+                    Kommentar = registration.Kommentar
                 };
 
                 _dbcontext.Add(c);
@@ -111,9 +114,11 @@ namespace SkiService.Services
                     cli.Priority = _dbcontext.Priorities.FirstOrDefault(e => e.PriorityName == registration.PriorityName);
                     cli.Facility = _dbcontext.Facilities.FirstOrDefault(e => e.FacilityName == registration.FacilityName);
                     cli.Status = _dbcontext.Status.FirstOrDefault(e => e.StatusName == registration.StatusName);
+                    cli.Kommentar = registration.Kommentar;
                 }
                 _dbcontext.Entry(cli).State = EntityState.Modified;
                 _dbcontext.SaveChanges();
+                
             }
             catch (Exception ex)
             {

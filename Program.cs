@@ -77,11 +77,11 @@ app.Run();
 /*TODO :
  * Restliche Methode in Services Fertig stellen--> DONE
  * Das Programm so ergänzen das man eine Liste von Services angezeigt wird welche Sortiert ist nach Piority--> DONE
- * Try Catch implementieren mit Logger
+ * Try Catch implementieren mit Logger-- Done
  * API Key einfügen / Custom Midelwar --> DONE
- * Logger einfügen --> Not sure
- * Ergänzen so das wen beim eintragen von neue Client ein Atribut fehlt ein NotFound.--> ??
+ * Logger einfügen --> Not sure Loggin der Mitarbeiter ?? A2
  * Connection string den Passwort verschlüsseln --> DONE
  * DB Mit neuen Server Connectiction Nicht über Windowos (SQL) --> Done
+ * Atribut hinzufügen
  * Program Kommentiere
  */

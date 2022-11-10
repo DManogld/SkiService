@@ -4,6 +4,7 @@ using SkiService.Services;
 using SkiService.RegistrationDTO;
 using System;
 using Serilog.Core;
+using ApiKeyCustomAttributes.Attributes;
 
 namespace SkiService.Controllers;
 
@@ -54,8 +55,9 @@ public class RegistrationController : ControllerBase
 	}
 
 
-	// POST action
-	[HttpPost]
+    // POST action
+    [ApiKey]
+    [HttpPost]
 	public ActionResult<Client> PostClent(ClientDTO registration)
 	{
         try
@@ -74,14 +76,15 @@ public class RegistrationController : ControllerBase
 
 
     // PUT action
+    [ApiKey]
     [HttpPut("{id}")] // Geht noch nicht 
 	public IActionResult Update(ClientDTO registration)
 	{
-
+        var id = registration.ClientID;
         try
         {
             _registrationService.Update(registration);
-            return NoContent();
+            return Content($"The Client with the ID:{id} has been changed successfully.");
 
         }
         catch (Exception ex)
@@ -94,8 +97,9 @@ public class RegistrationController : ControllerBase
 	}
 
 
-	// DELETE action
-	[HttpDelete("{id}")]
+    // DELETE action
+    [ApiKey]
+    [HttpDelete("{id}")]
 	public IActionResult Delete(int id)
 	{
         try

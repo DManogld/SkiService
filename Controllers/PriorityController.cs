@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ApiKeyCustomAttributes.Attributes;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SkiService.DTO;
 using SkiService.Services;
 
 namespace SkiService.Controllers
 {
+    [ApiKey]
     [Route("[controller]")]
     [ApiController]
     public class PriorityController : ControllerBase

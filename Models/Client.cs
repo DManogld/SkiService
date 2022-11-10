@@ -14,6 +14,8 @@
 
         public DateTime PickupDate { get; set; }
 
+        public string Kommentar { get; set; } 
+
         public int? StatusID { get; set; }
         public Status? Status { get; set; }
 

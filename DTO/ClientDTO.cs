@@ -16,5 +16,6 @@ namespace SkiService.RegistrationDTO
         public string? FacilityName { get; set; }
         public string? PriorityName { get; set; }
         public string? StatusName { get; set; }
+        public string? Kommentar { get; set; }
     }
 }

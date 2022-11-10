@@ -1,6 +1,9 @@
-﻿namespace SkiService.Midelware
+﻿using Microsoft.AspNetCore.Mvc.Filters;
+
+namespace SkiService.Midelware
 {
-    public class ApiKeyMiddleware
+    [AttributeUsage(validOn: AttributeTargets.Method)]
+    public class ApiKeyMiddleware :Attribute
     {
         private readonly RequestDelegate _next;
         private const string APIKEYNAME = "ApiKey";
