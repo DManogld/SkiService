@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Options;
 
 namespace SkiService.Models
 {
@@ -14,7 +12,6 @@ namespace SkiService.Models
             : base(options)
         {
         }
-
 
         public DbSet<Client> Clients { get; set; } = null!;
         public DbSet<Facility> Facilities { get; set; }

@@ -11,6 +11,7 @@ namespace SkiService.Controllers
     public class StatusController : ControllerBase
     {
         private IStatusServices _statusService;
+        private readonly ILogger<StatusController> _logger;
 
         public StatusController(IStatusServices status)
         {
@@ -21,15 +22,31 @@ namespace SkiService.Controllers
         [HttpGet]
         public IEnumerable<StatusDTO> GetAllClient()
         {
-
-            return _statusService.GetAll();
-
+            try
+            {
+                return _statusService.GetAll();
+            }
+            catch (Exception ex )
+            {
+                _logger.LogError($"Error occured, {ex.Message}");
+                return (IEnumerable<StatusDTO>)NotFound("Error occured");
+            }
         }
 
         [HttpGet("{status}")]
         public ActionResult<StatusDTO> GetByStatus(string status)
         {
-            return _statusService.GetStatus(status);
+            try
+            {
+                return _statusService.GetStatus(status);
+            }
+            catch (Exception ex)
+            {
+
+                _logger.LogError($"Error occured, {ex.Message}");
+                return NotFound("Error occured");
+            }
+           
         }
 
     }

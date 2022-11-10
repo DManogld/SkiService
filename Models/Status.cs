@@ -6,7 +6,6 @@ namespace SkiService.Models
     {
         [Key]
         public int StatusID { get; set; }
-
         public string? StatusName { get; set; }
         public List<Client> client { get; set; } = new List<Client>();
     }

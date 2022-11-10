@@ -80,7 +80,7 @@ app.Run();
  * Try Catch implementieren mit Logger
  * API Key einfügen / Custom Midelwar --> DONE
  * Logger einfügen --> Not sure
- * Ergänzen so das wen beim eintragen von neue Client ein Atribut fehlt ein NotFound.
+ * Ergänzen so das wen beim eintragen von neue Client ein Atribut fehlt ein NotFound.--> ??
  * Connection string den Passwort verschlüsseln --> DONE
  * DB Mit neuen Server Connectiction Nicht über Windowos (SQL) --> Done
  * Program Kommentiere

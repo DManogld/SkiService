@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SkiService.DTO;
+﻿using Microsoft.EntityFrameworkCore;
 using SkiService.Models;
 using SkiService.RegistrationDTO;
 using System.Data;
-using System.Numerics;
-using System.Xml.Linq;
 
 namespace SkiService.Services
 {
@@ -23,29 +19,38 @@ namespace SkiService.Services
             List<Client> client = new List<Client>();
             List<ClientDTO> result = new List<ClientDTO>();
            client =  _dbcontext.Clients.Include("Facility").Include("Priority").Include("Status").ToList();
-
-           client.ForEach(e => result.Add(new ClientDTO()
+            try
             {
-                ClientID = e.ClientID,
-                Name = e.Name,
-                EMail = e.EMail,
-                Phone = e.Phone,
-                CreateDate = e.CreateDate,
-                PickupDate = e.PickupDate,
-                FacilityName = e.Facility.FacilityName,
-                PriorityName = e.Priority.PriorityName,
-                StatusName = e.Status.StatusName,
-            }));
-            
-            return result;
+                client.ForEach(e => result.Add(new ClientDTO()
+                {
+                    ClientID = e.ClientID,
+                    Name = e.Name,
+                    EMail = e.EMail,
+                    Phone = e.Phone,
+                    CreateDate = e.CreateDate,
+                    PickupDate = e.PickupDate,
+                    FacilityName = e.Facility.FacilityName,
+                    PriorityName = e.Priority.PriorityName,
+                    StatusName = e.Status.StatusName,
+                }));
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public ClientDTO? Get(int id)
         {
             Client c;
             c = _dbcontext.Clients.Include("Facility").Include("Priority").Include("Status").FirstOrDefault(p => p.ClientID == id);
-            if(c == null)
-                return null;
+
+            try
+            {
+                if (c == null)
+                    return null;
 
                 return new ClientDTO
                 {
@@ -58,54 +63,79 @@ namespace SkiService.Services
                     FacilityName = c.Facility.FacilityName,
                     PriorityName = c.Priority.PriorityName,
                     StatusName = c.Status.StatusName,
-                };           
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }           
         }
+
 
         public void Add(ClientDTO registration)
         {
-            Client c = new Client()
+            try
             {
-                ClientID = registration.ClientID,
-                Name = registration.Name,
-                EMail = registration.EMail,
-                Phone = registration.Phone,
-                Priority = _dbcontext.Priorities.FirstOrDefault(e => e.PriorityName == registration.PriorityName),
-                Facility = _dbcontext.Facilities.FirstOrDefault(e => e.FacilityName == registration.FacilityName),
-                Status = _dbcontext.Status.FirstOrDefault(e => e.StatusName == registration.StatusName),
-            };
+                Client c = new Client()
+                {
+                    ClientID = registration.ClientID,
+                    Name = registration.Name,
+                    EMail = registration.EMail,
+                    Phone = registration.Phone,
+                    Priority = _dbcontext.Priorities.FirstOrDefault(e => e.PriorityName == registration.PriorityName),
+                    Facility = _dbcontext.Facilities.FirstOrDefault(e => e.FacilityName == registration.FacilityName),
+                    Status = _dbcontext.Status.FirstOrDefault(e => e.StatusName == registration.StatusName),
+                };
 
-          _dbcontext.Add(c);
-          _dbcontext.SaveChanges();
+                _dbcontext.Add(c);
+                _dbcontext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
 
         public void Update(ClientDTO registration)
         {
             var cli = _dbcontext.Clients.Where(e => e.ClientID == registration.ClientID).FirstOrDefault();
-
-
-            if (cli != null)
+            try
             {
-                cli.ClientID = registration.ClientID;
-                cli.Name = registration.Name;
-                cli.EMail = registration.EMail;
-                cli.Phone = registration.Phone;
-                cli.Priority = _dbcontext.Priorities.FirstOrDefault(e => e.PriorityName == registration.PriorityName);
-                cli.Facility = _dbcontext.Facilities.FirstOrDefault(e => e.FacilityName == registration.FacilityName);
-                cli.Status = _dbcontext.Status.FirstOrDefault(e => e.StatusName == registration.StatusName);
+                if (cli != null)
+                {
+                    cli.ClientID = registration.ClientID;
+                    cli.Name = registration.Name;
+                    cli.EMail = registration.EMail;
+                    cli.Phone = registration.Phone;
+                    cli.Priority = _dbcontext.Priorities.FirstOrDefault(e => e.PriorityName == registration.PriorityName);
+                    cli.Facility = _dbcontext.Facilities.FirstOrDefault(e => e.FacilityName == registration.FacilityName);
+                    cli.Status = _dbcontext.Status.FirstOrDefault(e => e.StatusName == registration.StatusName);
+                }
+                _dbcontext.Entry(cli).State = EntityState.Modified;
+                _dbcontext.SaveChanges();
             }
-            _dbcontext.Entry(cli).State = EntityState.Modified;
-            _dbcontext.SaveChanges();
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
 
         public void Delete(int id)
         {
             var client = _dbcontext.Clients.Find(id);
-            if (client != null)
+            try
             {
-                _dbcontext.Clients.Remove(client);
-                _dbcontext.SaveChanges();
+                if (client != null)
+                {
+                    _dbcontext.Clients.Remove(client);
+                    _dbcontext.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         } 
     }

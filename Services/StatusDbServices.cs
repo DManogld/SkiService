@@ -15,45 +15,59 @@ namespace SkiService.Services
             _dbcontext = dbcontext;
         }
 
+
         public List<StatusDTO> GetAll()
         { 
-             Status = _dbcontext.Status.Include("client").Include("client.Priority").Include("client.Facility").ToList();
+            Status = _dbcontext.Status.Include("client").Include("client.Priority").Include("client.Facility").ToList();
+            List<StatusDTO> result = new List<StatusDTO>();
 
-            List<StatusDTO> result = new List<StatusDTO>();          
-
-            foreach (var s in Status)
+            try
             {
-                var status = new StatusDTO();
-                status.StatusID = s.StatusID;
-                status.StatusName = s.StatusName;
-
-                foreach (var r in s.client)
+                foreach (var s in Status)
                 {
-                    ClientDTO cdto = new ClientDTO();
-                    cdto.ClientID = r.ClientID;
-                    cdto.Name = r.Name;
-                    cdto.EMail = r.EMail;
-                    cdto.Phone = r.Phone;
-                    cdto.CreateDate = r.CreateDate;
-                    cdto.PickupDate = r.PickupDate;
+                    var status = new StatusDTO();
+                    status.StatusID = s.StatusID;
+                    status.StatusName = s.StatusName;
 
-                    cdto.PriorityName = r.Priority.PriorityName;
-                    cdto.FacilityName = r.Facility.FacilityName;
-                    cdto.StatusName = r.Status.StatusName;
+                    foreach (var r in s.client)
+                    {
+                        ClientDTO cdto = new ClientDTO();
+                        cdto.ClientID = r.ClientID;
+                        cdto.Name = r.Name;
+                        cdto.EMail = r.EMail;
+                        cdto.Phone = r.Phone;
+                        cdto.CreateDate = r.CreateDate;
+                        cdto.PickupDate = r.PickupDate;
 
-                    status.client.Add(cdto);
+                        cdto.PriorityName = r.Priority.PriorityName;
+                        cdto.FacilityName = r.Facility.FacilityName;
+                        cdto.StatusName = r.Status.StatusName;
+
+                        status.client.Add(cdto);
+                    }
+                    result.Add(status);
                 }
-                result.Add(status);
+                return result;
             }
-            return result;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }           
         }
+
 
         public StatusDTO GetStatus(string status)
         {
-            List<StatusDTO> t = GetAll();
-
-            StatusDTO result = t.Find(p => p.StatusName == status);
-            return result;
+            try
+            {
+                List<StatusDTO> t = GetAll();
+                StatusDTO result = t.Find(p => p.StatusName == status);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

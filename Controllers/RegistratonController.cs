@@ -24,9 +24,15 @@ public class RegistrationController : ControllerBase
 	[HttpGet]
 	public IEnumerable<ClientDTO> GetAllClient()
 	{
-	
-	 return	_registrationService.GetAll();
-		_logger.LogError("test");
+        try
+        {
+            return _registrationService.GetAll();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Error occured, {ex.Message}");
+            return (IEnumerable<ClientDTO>)NotFound($"Error occured, {ex.Message}");
+        }
 	
 	}
 
@@ -100,7 +106,7 @@ public class RegistrationController : ControllerBase
                 return NotFound();
 
             _registrationService.Delete(id);
-            return NoContent();
+            return Content($"Item in row {id} is deleted.");
 
         }
         catch (Exception ex)
@@ -108,9 +114,6 @@ public class RegistrationController : ControllerBase
             _logger.LogError($"Error occured, {ex.Message}");
             return NotFound($"Error occured, {ex.Message}");
         }
-
-
-
 		
 	}
 }
