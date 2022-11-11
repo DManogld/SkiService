@@ -22,6 +22,7 @@ builder.Services.AddDbContext<RegistrationContext>(options =>
 builder.Services.AddScoped<IRegistrationServices, RegistrationDbServices>();
 builder.Services.AddScoped<IStatusServices, StatusDbServices>();
 builder.Services.AddScoped<IPriorityServices, PriorityDBServices>();
+builder.Services.AddScoped<IMitarbeiterDbService, MitarbeiterService>();
 
 // Loger 
 var loggerFromSettings = new LoggerConfiguration()

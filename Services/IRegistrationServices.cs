@@ -1,4 +1,5 @@
-﻿using SkiService.Models;
+﻿using SkiService.DTO;
+using SkiService.Models;
 using SkiService.RegistrationDTO;
 
 namespace SkiService.Services

@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SkiService.DTO;
+using SkiService.Migrations;
 using SkiService.Models;
 using SkiService.RegistrationDTO;
 using System.Data;

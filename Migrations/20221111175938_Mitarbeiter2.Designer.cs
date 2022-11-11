@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkiService.Models;
 
@@ -11,9 +12,10 @@ using SkiService.Models;
 namespace SkiService.Migrations
 {
     [DbContext(typeof(RegistrationContext))]
-    partial class RegistrationContextModelSnapshot : ModelSnapshot
+    [Migration("20221111175938_Mitarbeiter2")]
+    partial class Mitarbeiter2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,7 +95,7 @@ namespace SkiService.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MitarbeiterID"), 1L, 1);
 
-                    b.Property<string>("MitarbeiterApiKeys")
+                    b.Property<string>("MitarbeiterApiKey")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MitarbeiterName")

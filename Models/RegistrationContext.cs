@@ -17,6 +17,8 @@ namespace SkiService.Models
         public DbSet<Facility> Facilities { get; set; }
         public DbSet<Priority> Priorities { get; set; }
         public DbSet<Status> Status { get; set; }= null!;
+        public DbSet<Mitarbeiter> Mitarbeiters { get; set; }
+
     }
 
 }

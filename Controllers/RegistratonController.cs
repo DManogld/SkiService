@@ -5,6 +5,7 @@ using SkiService.RegistrationDTO;
 using System;
 using Serilog.Core;
 using ApiKeyCustomAttributes.Attributes;
+using SkiService.DTO;
 
 namespace SkiService.Controllers;
 
@@ -22,6 +23,7 @@ public class RegistrationController : ControllerBase
     }
 
 	// GET all action
+        [ApiKey]
 	[HttpGet]
 	public IEnumerable<ClientDTO> GetAllClient()
 	{
@@ -37,7 +39,8 @@ public class RegistrationController : ControllerBase
 	
 	}
 
-	// GET by ClientID action
+    // GET by ClientID action
+
 	[HttpGet("{id}")]
 	public ActionResult<ClientDTO> Get(int id)
 	{
@@ -56,7 +59,6 @@ public class RegistrationController : ControllerBase
 
 
     // POST action
-    [ApiKey]
     [HttpPost]
 	public ActionResult<Client> PostClent(ClientDTO registration)
 	{
