@@ -2,6 +2,9 @@
 
 namespace SkiService.Models
 {
+    /// <summary>
+    /// Mitarbeiter Klasse für Datenbankkreation/Datenbankverbindung
+    /// </summary>
     public class Mitarbeiter
     {
         [Key]

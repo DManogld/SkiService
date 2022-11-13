@@ -2,6 +2,9 @@
 
 namespace SkiService.Services
 {
+    /// <summary>
+    /// Interface für PriorityDbService
+    /// </summary>
     public interface IPriorityServices
     {
         List<PriotityDTO> GetAll();

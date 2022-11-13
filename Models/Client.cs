@@ -1,5 +1,8 @@
 ﻿namespace SkiService.Models
 {
+    /// <summary>
+    /// Client Klasse für Datenbankkreation/Datenbankverbindung
+    /// </summary>
     public class Client
     {
         public int ClientID { get; set; }

@@ -3,6 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace SkiService.Models
 {
+    /// <summary>
+    /// Priority Klasse für Datenbankkreation/Datenbankverbindung
+    /// </summary>
     public class Priority
     {
         [Key]      

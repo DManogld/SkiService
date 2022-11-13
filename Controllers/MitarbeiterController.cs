@@ -15,25 +15,27 @@ namespace SkiService.Controllers
     public class MitarbeiterController : ControllerBase
     {
         private IMitarbeiterDbService _mitarbeiterService;
+        private readonly ILogger<MitarbeiterController> _logger;
 
-        public MitarbeiterController(IMitarbeiterDbService mitarbeiter)
+        /// <summary>
+        /// Konstruktor für instanziierung von Interface und Logger
+        /// </summary>
+        /// <param name="mitarbeiter"></param>
+        /// <param name="logger"></param>
+        public MitarbeiterController(IMitarbeiterDbService mitarbeiter, ILogger<MitarbeiterController> logger)
         {
             _mitarbeiterService = mitarbeiter;
+            _logger = logger;
         }
 
+        /// <summary>
+        /// GetAll Methode welche Service aufruft
+        /// </summary>
+        /// <returns>Mitarbeiter</returns>
         [HttpGet]
         public IEnumerable<Mitarbeiter> GetAll()
         {
             List<Mitarbeiter> mitarbeiter = _mitarbeiterService.GetAll();
-
-            ////List<MitarbeiterDTO> result = new List<MitarbeiterDTO>();
-            //mitarbeiter.ForEach(e => result.Add(new Mitarbeiter()
-            //{
-            //    MitarbeiterID = e.MitarbeiterID,
-            //    MitarbeiterName = e.MitarbeiterName,
-            //    MitarbeiterApiKey = e.MitarbeiterApiKey,
-
-            //}));
             return  mitarbeiter;
         }
 

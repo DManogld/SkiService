@@ -2,12 +2,22 @@
 
 namespace SkiService.Models
 {
+    /// <summary>
+    /// Klasse für erstellen von Datenbanken
+    /// </summary>
     public class RegistrationContext : DbContext
     {
+        /// <summary>
+        /// Leerer Konstruktor
+        /// </summary>
         RegistrationContext()
         {
         }
 
+        /// <summary>
+        /// Konstruktor für Instaziierung
+        /// </summary>
+        /// <param name="options"></param>
         public RegistrationContext(DbContextOptions<RegistrationContext> options)
             : base(options)
         {

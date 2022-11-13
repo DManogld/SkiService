@@ -9,6 +9,9 @@ using SkiService.DTO;
 
 namespace SkiService.Controllers;
 
+/// <summary>
+/// Controller für Registration 
+/// </summary>
 [ApiController]
 [Route("[controller]")]
 public class RegistrationController : ControllerBase
@@ -16,14 +19,23 @@ public class RegistrationController : ControllerBase
 
     private IRegistrationServices _registrationService;
     private readonly ILogger<RegistrationController> _logger;
+
+    /// <summary>
+    /// Konstruktor für instanziierung von Interface und Logger
+    /// </summary>
+    /// <param name="registration">Interface Service</param>
+    /// <param name="logger">Interface Logger</param>
     public RegistrationController(IRegistrationServices registration, ILogger<RegistrationController> logger)
 	{		
 		_registrationService = registration;
         _logger = logger;
     }
 
-	// GET all action
-        [ApiKey]
+    /// <summary>
+    /// GetAll Methode welche Service über Interface aufruft
+    /// </summary>
+    /// <returns>List von ClientDTO</returns>
+    [ApiKey]
 	[HttpGet]
 	public IEnumerable<ClientDTO> GetAllClient()
 	{
@@ -39,8 +51,12 @@ public class RegistrationController : ControllerBase
 	
 	}
 
-    // GET by ClientID action
 
+    /// <summary>
+    /// GetById Methode welche Service über Interface aufruft
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns>Objekt ClientDTO</returns>
 	[HttpGet("{id}")]
 	public ActionResult<ClientDTO> Get(int id)
 	{
@@ -58,7 +74,11 @@ public class RegistrationController : ControllerBase
 	}
 
 
-    // POST action
+    /// <summary>
+    /// Post Methode welche Service über Interface aufruft
+    /// </summary>
+    /// <param name="registration"></param>
+    /// <returns> CLientDTO</returns>
     [HttpPost]
 	public ActionResult<Client> PostClent(ClientDTO registration)
 	{
@@ -77,7 +97,12 @@ public class RegistrationController : ControllerBase
 	}
 
 
-    // PUT action
+
+    /// <summary>
+    /// Update Methode welche Service über Interface aufruft
+    /// </summary>
+    /// <param name="registration"></param>
+    /// <returns>ClientDTO</returns>
     [ApiKey]
     [HttpPut("{id}")] // Geht noch nicht 
 	public IActionResult Update(ClientDTO registration)

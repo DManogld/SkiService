@@ -6,6 +6,9 @@ namespace SkiService.DTO
 {
     public class StatusDTO
     {
+        /// <summary>
+        /// DTO Class für Status
+        /// </summary>
         [Key]
         public int StatusID { get; set; }
         public string? StatusName { get; set; }

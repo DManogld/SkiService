@@ -5,17 +5,29 @@ using SkiService.RegistrationDTO;
 
 namespace SkiService.Services
 {
+    /// <summary>
+    /// Status Service für abrufen von Registrationen nach Status
+    /// </summary>
     public class StatusDbServices : IStatusServices
     {
         private readonly RegistrationContext _dbcontext;
         public List<Status> Status = new List<Status>();
 
+        /// <summary>
+        /// Konstruktor für instanziierung von DB verbindung
+        /// </summary>
+        /// <param name="dbcontext"></param>
         public StatusDbServices(RegistrationContext dbcontext)
         {
             _dbcontext = dbcontext;
         }
 
 
+        /// <summary>
+        /// GetAll Methode welche Registrationen, gruppiert nach Status zurückgibt
+        /// </summary>
+        /// <returns>Liste von StatusDTO</returns>
+        /// <exception cref="Exception"></exception>
         public List<StatusDTO> GetAll()
         { 
             Status = _dbcontext.Status.Include("client").Include("client.Priority").Include("client.Facility").ToList();
@@ -56,6 +68,12 @@ namespace SkiService.Services
         }
 
 
+        /// <summary>
+        /// GetStatus Methode welche Registrationen, nach spezifischem Status ausgibt
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns>StatusDTO</returns>
+        /// <exception cref="Exception"></exception>
         public StatusDTO GetStatus(string status)
         {
             try

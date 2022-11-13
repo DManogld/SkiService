@@ -7,15 +7,28 @@ using System.Data;
 
 namespace SkiService.Services
 {
+    /// <summary>
+    /// Registration Service für RegisrationController
+    /// </summary>
     public class RegistrationDbServices : IRegistrationServices
     {
         private readonly RegistrationContext _dbcontext;
 
+        /// <summary>
+        /// Kontruktor für instanziierung von DB verbindung
+        /// </summary>
+        /// <param name="dbcontext"></param>
         public RegistrationDbServices(RegistrationContext dbcontext)
         {
             _dbcontext = dbcontext;
         }
 
+
+        /// <summary>
+        ///GetAll Methode welche alle Registrationen zurückgibt
+        /// </summary>
+        /// <returns>Liste von ClientDTO</returns>
+        /// <exception cref="Exception"></exception>
         public IEnumerable<ClientDTO> GetAll()
         {
             List<Client> client = new List<Client>();
@@ -45,6 +58,13 @@ namespace SkiService.Services
             }
         }
 
+
+        /// <summary>
+        /// GetById Methode welche Registration nach bestimmter id zurückgibt
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>ClientDTO</returns>
+        /// <exception cref="Exception"></exception>
         public ClientDTO? Get(int id)
         {
             Client c;
@@ -76,6 +96,11 @@ namespace SkiService.Services
         }
 
 
+        /// <summary>
+        /// Add Methode für hinzufügen von Eintrag in Registration
+        /// </summary>
+        /// <param name="registration"></param>
+        /// <exception cref="Exception"></exception>
         public void Add(ClientDTO registration)
         {
             try
@@ -102,6 +127,11 @@ namespace SkiService.Services
         }
 
 
+        /// <summary>
+        /// Update Methode für modifizieren von Eintrag in Registrationen
+        /// </summary>
+        /// <param name="registration"></param>
+        /// <exception cref="Exception"></exception>
         public void Update(ClientDTO registration)
         {
             var cli = _dbcontext.Clients.Where(e => e.ClientID == registration.ClientID).FirstOrDefault();
@@ -129,6 +159,11 @@ namespace SkiService.Services
         }
 
 
+        /// <summary>
+        /// Delete Methode für löschen von Eintrag in Registration
+        /// </summary>
+        /// <param name="id"></param>
+        /// <exception cref="Exception"></exception>
         public void Delete(int id)
         {
             var client = _dbcontext.Clients.Find(id);

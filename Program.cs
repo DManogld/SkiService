@@ -1,14 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using SkiService.Midelware;
 using SkiService.Models;
 using SkiService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-// Configure DI for application services diese Initializiert ein Objekt
-//builder.Services.AddScoped<IRegistrationServices, RegistrationJsonService>();
+
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -16,24 +13,28 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
+// DB verbindung herstellen
 builder.Services.AddDbContext<RegistrationContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("C1")));
 
+
+// Configure DI for application services diese Initializiert ein Objekt
 builder.Services.AddScoped<IRegistrationServices, RegistrationDbServices>();
 builder.Services.AddScoped<IStatusServices, StatusDbServices>();
 builder.Services.AddScoped<IPriorityServices, PriorityDBServices>();
 builder.Services.AddScoped<IMitarbeiterDbService, MitarbeiterService>();
 
-// Loger 
+// Seri Logger mit appsettings.json Konfiguration
 var loggerFromSettings = new LoggerConfiguration()
 	.ReadFrom.Configuration(builder.Configuration)
 	.Enrich.FromLogContext()
 	.CreateLogger();
 
+//Logger
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(loggerFromSettings);
 
-
+// Swagger/OpenAPI konfigurieren
 builder.Services.AddSwaggerGen(options =>
 {
 	options.SwaggerDoc("v1", new OpenApiInfo
@@ -73,16 +74,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-
-/*TODO :
- * Restliche Methode in Services Fertig stellen--> DONE
- * Das Programm so ergänzen das man eine Liste von Services angezeigt wird welche Sortiert ist nach Piority--> DONE
- * Try Catch implementieren mit Logger-- Done
- * API Key einfügen / Custom Midelwar --> DONE
- * Logger einfügen --> Not sure Loggin der Mitarbeiter ?? A2
- * Connection string den Passwort verschlüsseln --> DONE
- * DB Mit neuen Server Connectiction Nicht über Windowos (SQL) --> Done
- * Atribut hinzufügen
- * Program Kommentiere
- */

@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace SkiService.RegistrationDTO
 {
+    /// <summary>
+    /// DTO Class für Client
+    /// </summary>
     public class ClientDTO
     {
         [Key]

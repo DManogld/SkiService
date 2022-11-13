@@ -13,13 +13,23 @@ namespace SkiService.Controllers
     {
 
         private IPriorityServices _priotityService;
-        private readonly ILogger<StatusController> _logger;
+        private readonly ILogger<PriorityController> _logger;
 
-        public PriorityController(IPriorityServices prio)
+        /// <summary>
+        /// Konstruktor für instanziierung von Interface und Logger
+        /// </summary>
+        /// <param name="prio"></param>
+        /// <param name="logger"></param>
+        public PriorityController(IPriorityServices prio, ILogger<PriorityController> logger)
         {
             _priotityService = prio;
+            _logger = logger;
         }
 
+        /// <summary>
+        /// GetAllClient Methode welche Service aufruft
+        /// </summary>
+        /// <returns>PriorityDTO</returns>
         [HttpGet]
         public IEnumerable<PriotityDTO> GetAllClient()
         {
@@ -31,11 +41,14 @@ namespace SkiService.Controllers
             {
                 _logger.LogError($"Error occured, {ex.Message}");
                 return (IEnumerable<PriotityDTO>)NotFound("Error occured");
-
             }
-
         }
 
+        /// <summary>
+        /// GetByPriority Methode welche Service aufruft
+        /// </summary>
+        /// <param name="priority"></param>
+        /// <returns>PriorityDTO</returns>
         [HttpGet("{priority}")]
         public ActionResult<PriotityDTO> GetByPriority(string priority)
         {

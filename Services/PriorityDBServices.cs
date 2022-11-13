@@ -6,17 +6,29 @@ using SkiService.RegistrationDTO;
 
 namespace SkiService.Services
 {
+    /// <summary>
+    /// Priority Service für abrufen von Registrationen nach Priority
+    /// </summary>
     public class PriorityDBServices : IPriorityServices
     {
         private readonly RegistrationContext _dbcontext;
         public List<Priority> Prio = new List<Priority>();
 
+        /// <summary>
+        /// Konstruktor für instanziierung von DBverbindung
+        /// </summary>
+        /// <param name="dbcontext"></param>
         public PriorityDBServices(RegistrationContext dbcontext)
         {
             _dbcontext = dbcontext;
         }
 
 
+        /// <summary>
+        /// GetAll Methode welche Registrationen, gruppiert nach Priority zurückgibt
+        /// </summary>
+        /// <returns>Liste von PriorityDTO</returns>
+        /// <exception cref="Exception"></exception>
         public List<PriotityDTO> GetAll()
         {
             Prio = _dbcontext.Priorities.Include("client").Include("client.Status").Include("client.Facility").ToList();
@@ -57,6 +69,12 @@ namespace SkiService.Services
         }
 
 
+        /// <summary>
+        /// GetStatus Methode welche Registrationen, nach spezifischem Status ausgibt
+        /// </summary>
+        /// <param name="priority"></param>
+        /// <returns>PriorityDTO</returns>
+        /// <exception cref="Exception"></exception>
         public PriotityDTO GetPriority(string priority)
         {
             try

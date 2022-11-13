@@ -7,6 +7,9 @@ using SkiService.Services;
 
 namespace SkiService.Controllers
 {
+    /// <summary>
+    /// Controller für Status
+    /// </summary>
     [ApiKey]
     [Route("[controller]")]
     [ApiController]
@@ -15,12 +18,22 @@ namespace SkiService.Controllers
         private IStatusServices _statusService;
         private readonly ILogger<StatusController> _logger;
 
-        public StatusController(IStatusServices status)
+        /// <summary>
+        /// Konstruktor für instanziierung von Interface und Logger
+        /// </summary>
+        /// <param name="status"></param>
+        /// <param name="logger"></param>
+        public StatusController(IStatusServices status, ILogger<StatusController> logger)
         {
             _statusService = status;
+            _logger = logger;
         }
 
 
+        /// <summary>
+        /// GetAllClient Methode welche Service aufruft
+        /// </summary>
+        /// <returns>Liste von StatusDTO</returns>
         [HttpGet]
         public IEnumerable<StatusDTO> GetAllClient()
         {
@@ -35,6 +48,11 @@ namespace SkiService.Controllers
             }
         }
 
+        /// <summary>
+        /// GetByStatus Methode welche Service aufruft
+        /// </summary>
+        /// <param name="status">status</param>
+        /// <returns>StatusDTO</returns>
         [HttpGet("{status}")]
         public ActionResult<StatusDTO> GetByStatus(string status)
         {

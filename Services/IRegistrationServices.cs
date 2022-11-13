@@ -5,7 +5,7 @@ using SkiService.RegistrationDTO;
 namespace SkiService.Services
 {
     /// <summary>
-    /// Wird verwendet um DI zu erstellen.
+    /// Interface für RegistrationDbService
     /// </summary>
     public interface IRegistrationServices
     {
@@ -14,6 +14,5 @@ namespace SkiService.Services
         void Add(ClientDTO registration);
         public void Delete(int id);
         public void Update(ClientDTO registration);
-        //void Add(ClientDTO newCLient);
     }
 }

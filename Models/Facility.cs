@@ -2,6 +2,9 @@
 
 namespace SkiService.Models
 {
+    /// <summary>
+    /// Facility Klasse für Datenbankkreation/Datenbankverbindung
+    /// </summary>
     public class Facility
     {
         [Key]
