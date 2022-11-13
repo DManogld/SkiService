@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "d735de60-4f53-4806-9227-f089c25c27fe",
+		"name": "SkiServices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22701846"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "hL4bA4nB4yI0vI0fC8fH7eT6",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "ApiKey",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7113/Registration",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7113",
+					"path": [
+						"Registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registration/id",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Registration",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"clientID\": 0,\r\n    \"name\": \"Test9\",\r\n    \"eMail\": \"test9\",\r\n    \"phone\": \"434asdasd3433\",\r\n    \"createDate\": \"0001-01-01T00:00:00\",\r\n    \"pickupDate\": \"0001-01-01T00:00:00\",\r\n    \"facilityName\": \"Grosse Service\",\r\n    \"priorityName\": \"Hoch\",\r\n    \"statusName\": \"Abgeschlossen\",\r\n    \"kommentar\": \"\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7113/Registration",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7113",
+					"path": [
+						"Registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registration/id",
+			"request": {
+				"method": "PUT",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Registration/id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7113/Registration/10",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7113",
+					"path": [
+						"Registration",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Priority",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Priority/string",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "hL4bA4nB4yI0vI0fC8fH7eT6",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "ApiKey",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7113/Priority/Niedgrig",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7113",
+					"path": [
+						"Priority",
+						"Niedgrig"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mitarbeiter",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
